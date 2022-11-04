@@ -1,16 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   ft_printf.c                                        :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: yzaim <marvin@codam.nl>                      +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/11/01 21:52:43 by yzaim         #+#    #+#                 */
+/*   Updated: 2022/11/04 18:58:33 by yzaim         ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
-
-#include <stdlib.h>
-#include <stdio.h>
-#include "libftprintf.h"
-#include <unistd.h>
-#include <limits.h>
 #include <stdarg.h>
-#include <string.h>
+#include "ft_printf.h"
 
-char	*ft_itoa(int n);
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
-void	*ft_memmove(void *dst, const void *src, size_t len);
+//char	*ft_itoa(int n);
+//size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
+//void	*ft_memmove(void *dst, const void *src, size_t len);
+//int		ft_strlen(const char *s);
+
 //how it works:
 //iteratire over the string, only stopping at %
 //that when you know you have a value that you have to convert to a string
@@ -26,94 +33,78 @@ void	*ft_memmove(void *dst, const void *src, size_t len);
 
 }*/
 
-/*int	parse_string(char *str, char *dst)
+static size_t ft_write_s(char *str)
 {
+	size_t	ret;
 
-}*/
+	ret = ft_strlen(str);
+	write(1, str, ret);
+	return (ret);
+}
+
+static size_t ft_write_c(char c)
+{
+	write(1, &c, 1);
+	return (1);
+}
+
+static size_t	ft_format(char c, va_list args)
+{
+	size_t	ret_len;
+
+	ret_len = 0;
+	if (c == 'c')
+		ret_len += ft_write_c(va_arg(args, int));
+	else if (c == 'd' || c == 'i')
+		ret_len += ft_write_int(va_arg(args, int));
+	else if (c == 's')
+		ret_len += ft_write_s(va_arg(args, char *));
+	//else if (c == p)
+	//{
+	//}
+	else if (c == 'x')
+		ret_len += ft_write_hex(va_arg(args, unsigned int), "0123456789abcdef");
+	else if (c == 'X')
+		ret_len += ft_write_hex(va_arg(args, unsigned int), "0123456789ABCDEF");
+	else if (c == 'u')
+		ret_len += ft_write_uint(va_arg(args, unsigned int));
+	else if (c == '%')
+		write(1, "%", 1);
+	return (ret_len);
+}
 
 int	ft_printf(const char *str, ...)
 {
-	va_list		args;
-	int		i;
-	int		j;
-	int		arg_num;
-	char		arg_char;
-	char		*store;
-	char		buf[400] = {0};
+	va_list	args;
+	size_t		i;
+	size_t	ret;
 	
 	va_start(args, str);
 	i = 0;
-	j = 0;
-	arg_num = 0;
+	ret = 0;
 	while (str && str[i])
 	{
 		if (str[i] != '%')
 		{
-			buf[j] = str[i];
-			j++;
+			write(1, &str[i], 1);
+			ret++;
 		}
 		else
 		{
 			i++;
-			if (str[i] == 'c')
-			{
-				//arg_num = va_arg(args, int);
-				buf[j] = va_arg(args, int);
-				//printf("char: %c\n", arg_num);
-			}
-			else if (str[i] == 'd')
-			{
-				arg_num = va_arg(args, int);
-				store = ft_itoa(arg_num);
-				ft_strlcpy(&buf[j], store, 300);
-				j = j + (strlen(store));
-				//arg_num = va_arg(args, int);
-				//printf("arg_nums %s\n", store);
-			}
-			else if (str[i] == 's')
-			{
-				store = (char *)va_arg(args, const char *);
-				ft_strlcpy(&buf[j], store, 300);
-				j = j + (strlen(store));
-				//printf("arg: %s\n", store);
-			}
-			j++;
+			ret += ft_format(str[i], args);
 		}
-	//	else
-		/*{
+		if (str[i] != 0)
 			i++;
-			if (str[i] = 'c')
-			{
-				arg_num = va_arg(args, char);
-				buf[j] = arg_num;
-			}
-			else if (str[i] == 'd' || str[i] == 'i')
-			{
-				arg_num = va_arg(args, int);
-				buf[j] = arg_num;
-			}
-			else if (str[i] == 'u')
-			{
-			}
-			else if (str[i] == 'x')
-			{
-			}
-			else if (str[i] == 'X')
-			{
-			}
-			else if (str[i] == '%')
-				buf[j] = '%';
-			j++;
-		}*/
-		i++;
 	}
 	va_end(args);
-	printf("buf is: %s\n", buf);
-	
-	return (0);
+	return (ret);
 }
 
-int	main(void)
+/*int	main(void)
 {
-	ft_printf("here is my string %d, %s", 30, "string");;
-}
+	ft_printf("here is my string, %x\n", -2147477);
+
+	printf("original: %x\n", -2147477);
+	//ft_write_uint(300);
+}*/
