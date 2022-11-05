@@ -26,12 +26,6 @@
 //%x and %X are the same - one CAPS other not.(base16)
 //%u - unsigned decimal(base10)
 //single % sign is ignored! to print \ or % you have to double them.
-/*int main ()
-{
-	printf("d: %d\ni: %i\nu: %u\nx: %x\nX:%X\n", (-(INT_MIN)-2),(-( INT_MIN)-2), (-(INT_MIN)-2), (-(INT_MIN)-2), (-(INT_MIN)-2));
-	printf("what does the \\ mean %%\n");
-
-}*/
 
 static size_t ft_write_s(char *str)
 {
@@ -48,26 +42,26 @@ static size_t ft_write_c(char c)
 	return (1);
 }
 
-static size_t	ft_format(char c, va_list args)
+static size_t	ft_format(char c, va_list *args)
 {
 	size_t	ret_len;
 
 	ret_len = 0;
 	if (c == 'c')
-		ret_len += ft_write_c(va_arg(args, int));
+		ret_len += ft_write_c(va_arg(*args, int));
 	else if (c == 'd' || c == 'i')
-		ret_len += ft_write_int(va_arg(args, int));
+		ret_len += ft_write_int(va_arg(*args, int));
 	else if (c == 's')
-		ret_len += ft_write_s(va_arg(args, char *));
+		ret_len += ft_write_s(va_arg(*args, char *));
 	//else if (c == p)
 	//{
 	//}
 	else if (c == 'x')
-		ret_len += ft_write_hex(va_arg(args, unsigned int), "0123456789abcdef");
+		ret_len += ft_write_hex(va_arg(*args, unsigned int), "0123456789abcdef");
 	else if (c == 'X')
-		ret_len += ft_write_hex(va_arg(args, unsigned int), "0123456789ABCDEF");
+		ret_len += ft_write_hex(va_arg(*args, unsigned int), "0123456789ABCDEF");
 	else if (c == 'u')
-		ret_len += ft_write_uint(va_arg(args, unsigned int));
+		ret_len += ft_write_uint(va_arg(*args, unsigned int));
 	else if (c == '%')
 		write(1, "%", 1);
 	return (ret_len);
@@ -92,7 +86,7 @@ int	ft_printf(const char *str, ...)
 		else
 		{
 			i++;
-			ret += ft_format(str[i], args);
+			ret += ft_format(str[i], &args);
 		}
 		if (str[i] != 0)
 			i++;

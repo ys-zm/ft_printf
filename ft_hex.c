@@ -24,15 +24,13 @@
 	}	
 }*/
 
-static char	*list_size(int base_num, int nb)
+static char	*list_size(size_t base_num, size_t nb)
 {
 	char	*list;
-	int		len;
-	unsigned int num; 
+	size_t	len;
 
-	num = nb;
 	len = ft_size_of_num(nb, base_num);
-	if (nb < 0 && base_num == 16)
+	if (nb < 0)
 		len--;
 	list = malloc(sizeof(char) * (len));
 	if (!list)
@@ -43,25 +41,25 @@ static char	*list_size(int base_num, int nb)
 
 static void	ft_putnbr_hex(size_t nb, char *base)
 {
-	unsigned int	num;
-	size_t	remainder;
-	size_t	i;
-	char	*list;
+	//unsigned int	num;
+	size_t		remainder;
+	size_t		i;
+	char		*list;
 
 	i = ft_size_of_num(nb, 16) - 1;
-	num = nb;
+	//num = nb;
 	remainder = 0;
 	list = list_size(16, nb);
 	if (nb < 0)
 	{
-		num = (nb * -1);
+		nb = (nb * -1);
 	}
 	if (nb == 0)
 		write(1, "0", 1);
-	while (num != 0)
+	while (nb != 0)
 	{
-		remainder = num % 16;
-		num /= 16;
+		remainder = nb % 16;
+		nb /= 16;
 		list[i] = base[remainder];
 		i--;
 	}

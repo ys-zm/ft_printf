@@ -16,52 +16,37 @@
 
 //function adds an extra count for the minus sign
 ////converts to +ve to count len
-static int	len(int n)
+static size_t	len(unsigned int n)
 {
-	unsigned int	x;
-	int				i;
+	size_t	i;
 
 	i = 0;
 	if (n == 0)
 		return (1);
-	if (n < 0)
+	while (n > 0)
 	{
-		x = n * -1;
-		i ++;
-	}
-	else
-		x = n;
-	while (x > 0)
-	{
-		x /= 10;
+		n /= 10;
 		i++;
 	}
 	return (i);
 }
 
-char	*ft_itoa(int n)
+char	*ft_itoa(unsigned int n)
 {
-	unsigned int	x;
-	char			*str;
-	int				i;
+	char	*str;
+	size_t	i;
 
-	x = n;
-	i = len(n) - 1;
-	str = malloc(sizeof(char) * (i + 2));
+	i = len(n);
+	str = malloc(sizeof(char) * (i + 1));
 	if (!str)
 		return (0);
-	str[i + 1] = (0);
+	str[i--] = 0;
 	if (n == 0)
 		str[i] = '0';
-	if (n < 0)
+	while (n != 0)
 	{
-		x = n * -1;
-		str[0] = '-';
-	}
-	while (x > 0)
-	{
-		str[i] = (x % 10) + 48;
-		x /= 10;
+		str[i] = (n % 10) + '0';
+		n /= 10;
 		i--;
 	}
 	return (str);

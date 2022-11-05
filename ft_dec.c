@@ -14,23 +14,21 @@
 #include <stdlib.h>
 #include "ft_printf.h"
 
-size_t	ft_size_of_num(int nb, int base)
+size_t	ft_size_of_num(size_t nb, size_t base)
 {
-	int	count;
-	unsigned int num;
+	size_t	count;
 
-	num = nb;
 	count = 0;
 	if (nb < 0)
 	{
-		num = nb * -1;
+		nb = nb * -1;
 		count++;
 	}
 	if (nb == 0)
 		count = 1;
-	while (num != 0)
+	while (nb != 0)
 	{
-		num /= base;
+		nb /= base;
 		count++;
 	}
 	return (count);
