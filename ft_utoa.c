@@ -10,9 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include "ft_printf.h"
 
 //function adds an extra count for the minus sign
 ////converts to +ve to count len
@@ -31,7 +33,7 @@ static size_t	len(unsigned int n)
 	return (i);
 }
 
-char	*ft_itoa(unsigned int n)
+char	*ft_utoa(unsigned int n)
 {
 	char	*str;
 	size_t	i;
@@ -39,7 +41,7 @@ char	*ft_itoa(unsigned int n)
 	i = len(n);
 	str = malloc(sizeof(char) * (i + 1));
 	if (!str)
-		return (0);
+		return (NULL);
 	str[i--] = 0;
 	if (n == 0)
 		str[i] = '0';
@@ -52,10 +54,20 @@ char	*ft_itoa(unsigned int n)
 	return (str);
 }
 
+size_t	ft_write_uint(unsigned int nb)
+{
+	char	*u_str;
+	size_t	ret;
+
+	u_str = ft_utoa(nb);
+	ret = ft_strlen(u_str);
+	write(1, u_str, ret);
+	free(u_str);
+	return (ret);
+}
+
 /*int	main(void)
 {
-	char	*s;
 
-	s = ft_itoa(9);
-	printf("final: %s\n", s);
+	ft_write_uint(-2147483647);
 }*/

@@ -17,7 +17,11 @@ NAME_libft = libft/libft.a
 
 SRC = ft_printf.c \
 	ft_hex.c \
-	ft_dec.c
+	ft_dec.c \
+	ft_utoa.c \
+	ft_strlen.c \
+	ft_putnbr.c \
+	ft_ptr.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -27,22 +31,22 @@ CFLAGS = -Wall -Werror -Wextra
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(NAME_libft)
+$(NAME): $(OBJ)
 	ar -rcs $@ $^
 
 %.o: %.c
 	gcc $(CFLAGS) -c -o $@ $^
 
-$(NAME_libft):
-	$(MAKE) -C libft all
+#$(NAME_libft):
+#	$(MAKE) -C libft all
 
 clean:
 	rm -f $(OBJ)
-	$(MAKE) -C  libft clean
+#	$(MAKE) -C  libft clean
 	
 fclean: clean
 	rm -f $(NAME)
-	$(MAKE) -C libft fclean
+#	$(MAKE) -C libft fclean
 
 re: fclean all
 

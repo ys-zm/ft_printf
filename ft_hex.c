@@ -12,24 +12,34 @@
 
 #include "ft_printf.h"
 
-/*static void	write_array_backwards(char list[])
+size_t	ft_len(size_t nb, size_t base)
 {
-	int	size;
+	size_t		count;
+	unsigned int	num;
 
-	size = ft_strlen(list);
-	while (size >= 0)
+	num = nb;
+	count = 0;
+//	if (nb < 0)
+//	{
+//		num = nb * -1;
+//		count++;
+//	}
+	if (num == 0)
+		count = 1;
+	while (num != 0)
 	{
-		write(1, &list[size], 1);
-		size--;
-	}	
-}*/
+		num /= base;
+		count++;
+	}
+	return (count);
+}
 
 static char	*list_size(size_t base_num, size_t nb)
 {
 	char	*list;
 	size_t	len;
 
-	len = ft_size_of_num(nb, base_num);
+	len = ft_len(nb, base_num);
 	if (nb < 0)
 		len--;
 	list = malloc(sizeof(char) * (len));
@@ -41,30 +51,29 @@ static char	*list_size(size_t base_num, size_t nb)
 
 static void	ft_putnbr_hex(size_t nb, char *base)
 {
-	//unsigned int	num;
+	unsigned int	num;
 	size_t		remainder;
 	size_t		i;
 	char		*list;
 
-	i = ft_size_of_num(nb, 16) - 1;
-	//num = nb;
+	i = ft_len(nb, 16) - 1;
+	num = nb;
 	remainder = 0;
 	list = list_size(16, nb);
 	if (nb < 0)
 	{
-		nb = (nb * -1);
+		num = (nb * -1);
 	}
 	if (nb == 0)
 		write(1, "0", 1);
-	while (nb != 0)
+	while (num != 0)
 	{
-		remainder = nb % 16;
-		nb /= 16;
-		list[i] = base[remainder];
-		i--;
+		remainder = num % 16;
+		num /= 16;
+		list[i--] = base[remainder];
 	}
 	//write_array_backwards(list);
-	write(1, list, ft_size_of_num(nb, 16));
+	write(1, list, ft_len(nb, 16));
 	free(list);
 }
 
@@ -72,7 +81,7 @@ size_t	ft_write_hex(size_t nb, char *base)
 {
 	size_t	ret;
 
-	ret = ft_size_of_num(nb, 16);
+	ret = ft_len(nb, 16);
 	ft_putnbr_hex(nb, base);
 	return (ret);
 }

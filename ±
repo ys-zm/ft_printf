@@ -1,0 +1,14 @@
+
+size_t	ft_ptr(void *ptr)
+{
+	
+
+}
+
+size_t	ft_write_ptr(void *ptr)
+{
+	size_t ret;
+
+	ret = ft_ptr(ptr);
+	return (ret);
+}
