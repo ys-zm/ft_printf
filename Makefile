@@ -6,7 +6,7 @@
 #    By: yzaim <marvin@codam.nl>                      +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/11/04 14:27:38 by yzaim         #+#    #+#                  #
-#    Updated: 2022/11/04 18:33:34 by yzaim         ########   odam.nl          #
+#    Updated: 2022/11/08 11:21:59 by yzaim         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,9 @@ SRC = ft_printf.c \
 	ft_hex.c \
 	ft_dec.c \
 	ft_utoa.c \
-	ft_strlen.c \
 	ft_putnbr.c \
-	ft_ptr.c
+	ft_ptr.c \
+	ft_strlen.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -32,16 +32,18 @@ CFLAGS = -Wall -Werror -Wextra
 all: $(NAME)
 
 $(NAME): $(OBJ)
+#	ar x $(NAME_libft)
 	ar -rcs $@ $^
 
 %.o: %.c
 	gcc $(CFLAGS) -c -o $@ $^
 
-#$(NAME_libft):
-#	$(MAKE) -C libft all
+$(NAME_libft):
+	$(MAKE) -C libft all
+#	ar x libft.a
 
 clean:
-	rm -f $(OBJ)
+	rm -f *.o
 #	$(MAKE) -C  libft clean
 	
 fclean: clean

@@ -6,7 +6,7 @@
 /*   By: yzaim <marvin@codam.nl>                      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/01 21:52:43 by yzaim         #+#    #+#                 */
-/*   Updated: 2022/11/04 18:58:33 by yzaim         ########   odam.nl         */
+/*   Updated: 2022/11/08 14:27:08 by yzaim         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,13 @@ static size_t	ft_format(char c, va_list *args)
 	return (ret_len);
 }
 
+
 int	ft_printf(const char *str, ...)
 {
 	va_list	args;
 	size_t	i;
 	size_t	ret;
+
 	
 	va_start(args, str);
 	i = 0;

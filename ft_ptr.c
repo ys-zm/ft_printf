@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   ft_ptr.c                                           :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: yzaim <marvin@codam.nl>                      +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/11/08 11:41:47 by yzaim         #+#    #+#                 */
+/*   Updated: 2022/11/08 13:41:01 by yzaim         ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 
 //printing address in hexadecimal form.
 size_t	ft_ptr(size_t ptr)
 {
-	unsigned long	n;
+	uintptr_t	n;
 	size_t	i;
 
 	n = ptr;
@@ -18,7 +30,9 @@ size_t	ft_ptr(size_t ptr)
 	{
 		write(1, "0x", 2);
 		i = 2;
-		i += ft_write_hex(ptr, "0123456789abcdef");
+		if (ptr == '\0')
+			write(1, "10", 2);
+		i += ft_write_hex(n, "0123456789abcdef");
 	}
 	return (i);
 }

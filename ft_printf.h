@@ -6,14 +6,14 @@
 /*   By: yzaim <marvin@codam.nl>                      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/04 13:34:38 by yzaim         #+#    #+#                 */
-/*   Updated: 2022/11/04 18:59:05 by yzaim         ########   odam.nl         */
+/*   Updated: 2022/11/08 11:17:33 by yzaim         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
-//#include "libft/libft.h"
+#include "libft/libft.h"
 #include <string.h>
 #include <stdarg.h>
 #include <limits.h>
