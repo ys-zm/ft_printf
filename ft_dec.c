@@ -6,17 +6,15 @@
 /*   By: yzaim <marvin@codam.nl>                      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/03 11:42:34 by yzaim         #+#    #+#                 */
-/*   Updated: 2022/11/08 11:19:52 by yzaim         ########   odam.nl         */
+/*   Updated: 2022/11/11 15:05:06 by yzaim         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
 #include "ft_printf.h"
 
 size_t	ft_size_of_num(int nb, size_t base)
 {
-	size_t		count;
+	size_t			count;
 	unsigned int	num;
 
 	num = nb;

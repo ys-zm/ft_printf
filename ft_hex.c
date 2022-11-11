@@ -6,14 +6,11 @@
 /*   By: yzaim <marvin@codam.nl>                      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/15 17:27:47 by yzaim         #+#    #+#                 */
-/*   Updated: 2022/11/08 14:06:24 by yzaim         ########   odam.nl         */
+/*   Updated: 2022/11/11 15:05:56 by yzaim         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <limits.h>
-
-#include <stdio.h>
 
 size_t	ft_len(size_t nb, size_t base)
 {
@@ -27,7 +24,6 @@ size_t	ft_len(size_t nb, size_t base)
 		nb /= base;
 		count++;
 	}
-	//printf("len: %d\n", count);
 	return (count);
 }
 
@@ -41,7 +37,6 @@ static char	*list_size(size_t base_num, size_t nb)
 	if (!list)
 		return (NULL);
 	return (list);
-
 }
 
 static void	ft_putnbr_hex(size_t nb, char *base)
@@ -50,9 +45,8 @@ static void	ft_putnbr_hex(size_t nb, char *base)
 	size_t		i;
 	char		*list;
 	size_t		len;
-	
+
 	len = ft_len(nb, 16);
-	//printf("nb: %zu\n", nb);
 	i = len - 1;
 	remainder = 0;
 	if (nb == 0)
@@ -79,7 +73,6 @@ size_t	ft_write_hex(size_t nb, char *base)
 	ft_putnbr_hex(nb, base);
 	return (ret);
 }
-
 /*int	main(void)
 {
 	unsigned int x;

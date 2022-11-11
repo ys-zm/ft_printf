@@ -6,7 +6,7 @@
 #    By: yzaim <marvin@codam.nl>                      +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/11/04 14:27:38 by yzaim         #+#    #+#                  #
-#    Updated: 2022/11/08 11:21:59 by yzaim         ########   odam.nl          #
+#    Updated: 2022/11/08 18:28:55 by yzaim         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,8 @@ $(NAME): $(OBJ)
 #	ar x $(NAME_libft)
 	ar -rcs $@ $^
 
-%.o: %.c
+obj/%.o: %.c
+	@mkdir -p obj
 	gcc $(CFLAGS) -c -o $@ $^
 
 $(NAME_libft):
