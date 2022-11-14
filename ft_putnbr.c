@@ -6,7 +6,7 @@
 /*   By: yzaim <marvin@codam.nl>                      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/13 11:50:19 by yzaim         #+#    #+#                 */
-/*   Updated: 2022/11/08 11:19:37 by yzaim         ########   odam.nl         */
+/*   Updated: 2022/11/14 12:35:06 by yzaim         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static void	ft_putchar(char c)
 {
 	write(1, &c, 1);
 }
-
 
 static void	if_negative(void)
 {

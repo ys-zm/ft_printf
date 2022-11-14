@@ -52,7 +52,10 @@ static size_t	ft_write_c(char c)
 
 static size_t	ft_write_modulo(void)
 {
-	write(1, "%", 1);
+	char	x;
+
+	x = '%';
+	write(1, &x, 1);
 	return (1);
 }
 
@@ -80,14 +83,12 @@ static size_t	ft_format(char c, va_list *args)
 	return (ret_len);
 }
 
-
 int	ft_printf(const char *str, ...)
 {
 	va_list	args;
 	size_t	i;
 	size_t	ret;
 
-	
 	va_start(args, str);
 	i = 0;
 	ret = 0;

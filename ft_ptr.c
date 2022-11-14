@@ -6,18 +6,17 @@
 /*   By: yzaim <marvin@codam.nl>                      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/08 11:41:47 by yzaim         #+#    #+#                 */
-/*   Updated: 2022/11/08 13:41:01 by yzaim         ########   odam.nl         */
+/*   Updated: 2022/11/14 12:09:05 by yzaim         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-
 //printing address in hexadecimal form.
 size_t	ft_ptr(size_t ptr)
 {
 	uintptr_t	n;
-	size_t	i;
+	size_t		i;
 
 	n = ptr;
 	i = 0;
@@ -39,7 +38,7 @@ size_t	ft_ptr(size_t ptr)
 
 size_t	ft_write_ptr(size_t ptr)
 {
-	size_t ret;
+	size_t	ret;
 
 	ret = ft_ptr(ptr);
 	return (ret);

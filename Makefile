@@ -23,6 +23,8 @@ SRC = ft_printf.c \
 	ft_ptr.c \
 	ft_strlen.c
 
+OBJFILE = obj/
+
 OBJ = $(SRC:.c=.o)
 
 HEADER = printf.h
@@ -31,17 +33,15 @@ CFLAGS = -Wall -Werror -Wextra
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-#	ar x $(NAME_libft)
+$(NAME): $(OBJ) 
 	ar -rcs $@ $^
 
-obj/%.o: %.c
-	@mkdir -p obj
+$(OBJFILE)/%.o: %.c
+	@mkdir -p obj/
 	gcc $(CFLAGS) -c -o $@ $^
 
-$(NAME_libft):
-	$(MAKE) -C libft all
-#	ar x libft.a
+#$(NAME_libft):
+#	$(MAKE) -C libft all
 
 clean:
 	rm -f *.o

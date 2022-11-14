@@ -15,7 +15,10 @@ int main()
 	c = &d;
 	
 
-	printf("my int ret: %d\n ", ft_printf("%y ", INT_MIN));
-	printf("org int ret: %d\n ", printf("%y ", INT_MIN));
+	//printf("my int ret: %d\n ", ft_printf("\001\002\007\v\010\f\r\n"));
+	//printf("org int ret: %d\n ", printf("\001\002\007\v\010\f\r\n"));
+
+	printf("mine %d\n", ft_printf("% .  % . %"));
+	printf("org: %d\n", printf("% .  % .  %"));
 }
 
