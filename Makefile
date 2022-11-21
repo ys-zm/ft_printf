@@ -21,7 +21,8 @@ SRC = ft_printf.c \
 	ft_utoa.c \
 	ft_putnbr.c \
 	ft_ptr.c \
-	ft_strlen.c
+	ft_strlen.c \
+	ft_error.c
 
 OBJFILE = obj/
 
@@ -36,20 +37,14 @@ all: $(NAME)
 $(NAME): $(OBJ) 
 	ar -rcs $@ $^
 
-$(OBJFILE)/%.o: %.c
-	@mkdir -p obj/
+%.o: %.c
 	gcc $(CFLAGS) -c -o $@ $^
-
-#$(NAME_libft):
-#	$(MAKE) -C libft all
 
 clean:
 	rm -f *.o
-#	$(MAKE) -C  libft clean
 	
 fclean: clean
 	rm -f $(NAME)
-#	$(MAKE) -C libft fclean
 
 re: fclean all
 

@@ -13,20 +13,6 @@
 #include <stdarg.h>
 #include "ft_printf.h"
 
-//char	*ft_itoa(int n);
-//size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
-//void	*ft_memmove(void *dst, const void *src, size_t len);
-//int		ft_strlen(const char *s);
-
-//how it works:
-//iteratire over the string, only stopping at %
-//that when you know you have a value that you have to convert to a string
-//create a buffer to copy relevant parts of the strings
-//itoa for %d and %i;
-//%x and %X are the same - one CAPS other not.(base16)
-//%u - unsigned decimal(base10)
-//single % sign is ignored! to print \ or % you have to double them.
-
 static size_t	ft_write_s(char *str)
 {
 	size_t	ret;
@@ -92,6 +78,8 @@ int	ft_printf(const char *str, ...)
 	va_start(args, str);
 	i = 0;
 	ret = 0;
+	if (ft_error_check(str) == 1)
+		return (-1);
 	while (str && str[i])
 	{
 		if (str[i] != '%')
@@ -110,10 +98,8 @@ int	ft_printf(const char *str, ...)
 	return (ret);
 }
 
-/*int	main(void)
+int	main(void)
 {
-	ft_printf("here is my string, %x\n", -2147477);
-
-	printf("original: %x\n", -2147477);
-	//ft_write_uint(300);
-}*/
+	printf("output mine: %d\n", ft_printf("string %s", "hello"));
+	printf("output org: %d\n", printf("string %s", "hello"));
+}

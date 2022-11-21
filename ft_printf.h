@@ -6,7 +6,7 @@
 /*   By: yzaim <marvin@codam.nl>                      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/04 13:34:38 by yzaim         #+#    #+#                 */
-/*   Updated: 2022/11/14 12:07:28 by yzaim         ########   odam.nl         */
+/*   Updated: 2022/11/21 16:19:21 by yzaim         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ size_t	ft_write_hex(size_t nb, char *base);
 void	ft_putnbr(int nb);
 size_t	ft_strlen(const char *s);
 size_t	ft_write_ptr(size_t ptr);
-size_t	ft_strlen(const char *s);
+int		ft_error_check(const char *str);
 
 #endif

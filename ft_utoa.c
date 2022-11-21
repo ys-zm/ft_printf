@@ -17,7 +17,7 @@
 #include "ft_printf.h"
 
 //function adds an extra count for the minus sign
-////converts to +ve to count len
+// converts to +ve to count len
 static size_t	len(unsigned int n)
 {
 	size_t	i;
