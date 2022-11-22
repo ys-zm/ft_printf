@@ -6,14 +6,12 @@
 #    By: yzaim <marvin@codam.nl>                      +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/11/04 14:27:38 by yzaim         #+#    #+#                  #
-#    Updated: 2022/11/08 18:28:55 by yzaim         ########   odam.nl          #
+#    Updated: 2022/11/22 11:39:16 by yzaim         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME = libftprintf.a
-
-NAME_libft = libft/libft.a
 
 SRC = ft_printf.c \
 	ft_hex.c \
@@ -24,17 +22,15 @@ SRC = ft_printf.c \
 	ft_strlen.c \
 	ft_error.c
 
-OBJFILE = obj/
-
 OBJ = $(SRC:.c=.o)
 
-HEADER = printf.h
+HEADER = ft_printf.h
 
 CFLAGS = -Wall -Werror -Wextra
 
 all: $(NAME)
 
-$(NAME): $(OBJ) 
+$(NAME): $(OBJ) $(HEADER)
 	ar -rcs $@ $^
 
 %.o: %.c

@@ -6,7 +6,7 @@
 /*   By: yzaim <marvin@codam.nl>                      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/04 13:34:38 by yzaim         #+#    #+#                 */
-/*   Updated: 2022/11/21 16:19:21 by yzaim         ########   odam.nl         */
+/*   Updated: 2022/11/22 12:06:31 by yzaim         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 int		ft_printf(const char *str, ...);
 size_t	ft_write_int(int nb);
 size_t	ft_write_uint(unsigned int nb);
-size_t	ft_size_of_num(int nb, size_t base);
 size_t	ft_write_hex(size_t nb, char *base);
 void	ft_putnbr(int nb);
 size_t	ft_strlen(const char *s);

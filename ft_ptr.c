@@ -6,7 +6,7 @@
 /*   By: yzaim <marvin@codam.nl>                      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/08 11:41:47 by yzaim         #+#    #+#                 */
-/*   Updated: 2022/11/14 12:09:05 by yzaim         ########   odam.nl         */
+/*   Updated: 2022/11/22 13:58:54 by yzaim         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,11 @@ size_t	ft_ptr(size_t ptr)
 
 	n = ptr;
 	i = 0;
+	i += write(1, "0x", 2);
 	if (!n)
-	{
-		i = 3;
-		write(1, "0x0", 3);
-	}
+		i += write(1, "0", 1);
 	else
-	{
-		write(1, "0x", 2);
-		i = 2;
-		if (ptr == '\0')
-			write(1, "10", 2);
 		i += ft_write_hex(n, "0123456789abcdef");
-	}
 	return (i);
 }
 

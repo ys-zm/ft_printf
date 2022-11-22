@@ -6,13 +6,13 @@
 /*   By: yzaim <marvin@codam.nl>                      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/03 11:42:34 by yzaim         #+#    #+#                 */
-/*   Updated: 2022/11/11 15:05:06 by yzaim         ########   odam.nl         */
+/*   Updated: 2022/11/22 12:07:32 by yzaim         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-size_t	ft_size_of_num(int nb, size_t base)
+static size_t	ft_size_of_num(int nb)
 {
 	size_t			count;
 	unsigned int	num;
@@ -28,7 +28,7 @@ size_t	ft_size_of_num(int nb, size_t base)
 		count = 1;
 	while (num != 0)
 	{
-		num /= base;
+		num /= 10;
 		count++;
 	}
 	return (count);
@@ -40,6 +40,6 @@ size_t	ft_write_int(int nb)
 
 	ret = 0;
 	ft_putnbr(nb);
-	ret = ft_size_of_num(nb, 10);
+	ret = ft_size_of_num(nb);
 	return (ret);
 }

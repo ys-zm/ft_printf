@@ -6,7 +6,7 @@
 /*   By: yzaim <marvin@codam.nl>                      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/01 21:52:43 by yzaim         #+#    #+#                 */
-/*   Updated: 2022/11/08 14:27:08 by yzaim         ########   odam.nl         */
+/*   Updated: 2022/11/22 15:06:33 by yzaim         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,7 @@ static size_t	ft_write_modulo(void)
 	char	x;
 
 	x = '%';
-	write(1, &x, 1);
-	return (1);
+	return (write(1, &x, 1));
 }
 
 static size_t	ft_format(char c, va_list *args)
@@ -83,14 +82,10 @@ int	ft_printf(const char *str, ...)
 	while (str && str[i])
 	{
 		if (str[i] != '%')
-		{
-			write(1, &str[i], 1);
-			ret++;
-		}
+			ret += write(1, &str[i], 1);
+			//ret++;
 		else
-		{
 			ret += ft_format(str[++i], &args);
-		}
 		if (str[i] != 0)
 			i++;
 	}
@@ -100,6 +95,6 @@ int	ft_printf(const char *str, ...)
 
 int	main(void)
 {
-	printf("output mine: %d\n", ft_printf("string %s", "hello"));
-	printf("output org: %d\n", printf("string %s", "hello"));
+	printf("output mine: %d\n", ft_printf("%X", 123456));
+	printf("output org: %d\n", printf("%X", 123456));
 }

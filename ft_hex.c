@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/ ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
 /*   ft_putnbr_base.c                                   :+:    :+:            */
@@ -6,13 +6,13 @@
 /*   By: yzaim <marvin@codam.nl>                      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/15 17:27:47 by yzaim         #+#    #+#                 */
-/*   Updated: 2022/11/11 15:05:56 by yzaim         ########   odam.nl         */
+/*   Updated: 2022/11/22 17:36:31 by yzaim         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-size_t	ft_len(size_t nb, size_t base)
+static size_t	ft_len(size_t nb, size_t base)
 {
 	size_t		count;
 
@@ -33,9 +33,10 @@ static char	*list_size(size_t base_num, size_t nb)
 	size_t	len;
 
 	len = ft_len(nb, base_num);
-	list = malloc(sizeof(char) * (len));
+	list = malloc(sizeof(char) * (len + 1));
 	if (!list)
 		return (NULL);
+	list[len] = '\0';
 	return (list);
 }
 
